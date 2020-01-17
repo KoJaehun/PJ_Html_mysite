@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Developer:KO</title>
+	<script src="https://kit.fontawesome.com/2518bc55d6.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="../css/effect.css">
+	<link rel="stylesheet" type="text/css" href="../css/common.css">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css?family=Sunflower:300&display=swap');
+		
+		
+		.wrap{
+			border: 1px solid black;
+			max-width: 1400px;
+			display: flex;
+			justify-content: center;
+			box-sizing: border-box;
+			padding: 25px;
+			margin: 25px auto;
+		}
+		/* 사이드 내용 */
+		.side_wrap{
+			border: 1px solid red;
+			width: 450px;
+			height: 1000px;
+			margin-right: 25px;
+		}
+		.side_picture{
+			background-image: url("../img/고재훈1.jpg");
+			background-repeat: no-repeat;
+			height: 300px;
+			background-position: center center;
+			background-size: 100%;
+
+		}
+		/* 소개내용 */
+		.content_wrap{
+			border: 1px solid blue;
+			width: 850px;
+			height: 1000px;
+		}
+		.common_pannel{
+			border-radius: 2px;
+			background-color: white;
+		}
+		.side_intro_group{
+			padding: 15px;
+		}
+		.name {
+			font-size: 30px;
+			font-family: 'Sunflower', sans-serif;
+
+		}
+		.intro{
+			font-size: 15px;
+			line-height: 22px;
+		}
+		.side_personal{
+			border-top: 1px solid #eee;
+			padding: 15px 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 120px;
+		}
+		.side_personal_group{
+			padding: 0 15px;
+		}
+		.side_personal i {
+			color: black;
+			width: 20px;
+			
+		}
+		.side_sns{
+			border-top: 1px solid #eee;
+			padding: 15px 0;
+		}
+		.nav{
+			margin-top:25px;
+		}
+		
+		.menu_title{
+			background-color: grey;
+			color: white;
+			font-weight: bold;
+			padding: 8px 15px;
+			font-size: 18px;
+			border-top-left-radius: 2px;
+			border-top-right-radius: 2px;
+			display: flex;
+			align-items: center;
+		}
+		.menu_title i{
+			width: 20px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<aside>
+			<div class="side_wrap">
+				<div class="common_pannel layer">
+					<div class="side_picture"></div>
+					<div class="side_intro_group">
+						<div class="name">Jaehun Ko (Koj)</div>
+						<div class="intro">
+							I'm Cho-bo Developer <br>
+							
+						</div>
+					</div>
+					<div class="side_personal_group"> <!--div 2개만들어 div 마진으로 밀어내기 -->
+					<div class="side_personal">
+						<div><i class="fas fa-briefcase"></i> Web Programmer </div>
+						<div><i class="fas fa-map-marker-alt"></i> Gwang-Ju, S.Korea</div>
+						<div><i class="fas fa-envelope"></i> andy0589@kakao.com</div>
+						<div><i class="fas fa-mobile-alt"></i> 010-9318-9098</div>
+					</div>
+					<div class="side_sns"> <!-- SNS CSS 애니메이션 효과 -->
+						<div class="middle">
+							<a class="snsbtn" href="#">
+								<i class="fab fa-facebook-f"></i></a>
+							<a class="snsbtn" href="#">
+								<i class="fab fa-twitter"></i></a>
+							<a class="snsbtn" href="#">
+								<i class="fab fa-google"></i></a>
+							<a class="snsbtn" href="#">
+								<i class="fab fa-instagram"></i></a>
+							<a class="snsbtn" href="#">
+								<i class="fab fa-youtube"></i></a>
+						</div>
+					</div>
+					</div>
+
+				</div>
+				<div class="common_pannel layer nav">
+					<div class="menu_title">
+						<i class="fas fa-align-justify"></i></i>
+						<span>Menu</span>
+					</div>
+					<ul>
+						<li><a href="#">Tech Skills</a></li><br>
+						<li><a href="#">Education</a></li><br>
+						<li><a href="#">License</a></li><br>
+						<li><a href="#">Contact</a></li><br>
+					</ul>
+				</div>
+			</div>
+		</aside>
+
+		<section>
+			<div class="content_wrap"></div>
+		</section>
+	</div>
+</body>
+</html>

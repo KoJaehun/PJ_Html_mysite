@@ -1,0 +1,35 @@
+/* 구글 웹폰트 */
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap');
+
+/* 공통 사항 */
+* {box-sizing: border-box; }
+body{margin: 0; padding: 0;
+	font-family: 'Nanum Gothic Coding', monospace;
+	color: #2F3138;
+	background-color: #f1f1f1;
+	}
+ul{
+	margin: 0; padding: 0;
+	list-style-type: none;
+	}
+a{
+	text-decoration: none;
+	color: inherit;
+	}
+/* Text 에 밑줄쳐지는 CSS 효과 */
+.magicline:after{
+	content: '';
+	display: block;
+	width: 0;
+	height: 2.5px;
+	background-color: #506783;
+	transition: width .3s;
+}
+.magicline:hover:after{
+	width: 100%;
+}
+
+/* 판넬 3D CSS 효과 */
+.layer{
+	box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
