@@ -26,7 +26,9 @@
 			
 			align-items: center;
 		}
-		.header_content_logo{}
+		.header_content_logo{
+
+		}
 		.header_content_search {}
 		.header_content_search_group{
 			display: flex;
@@ -175,7 +177,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			display: none;
+			/* display: none; */
 		}
 		.modal_content{
 			position: relative;
@@ -187,46 +189,71 @@
 			overflow: hidden;
 
 		}
+		.title .jogging_logo{
+			display: block;
+			width: 330px;
+			height: 110px;
+			background: url('C:/Developer/web_design_workspace/jogging/img/jogging.png') 0 -20px;
+			margin: 5px;
+		}
 		/* 모달끝 */
 
 div#content_layout{
-			width: 414px;
-			margin: 0 auto;
+			width: 350px;
+			margin: 0px auto;
+
+		}
+		header{
+			padding: 5px;
+			margin: 0px;
+
+		}
+		div#header{
+			display: block;
+			width: 330px;
+			height: 100px;
+			background: url('C:/Developer/web_design_workspace/jogging/img/jogging.png') 0 -20px;
+			margin: auto;
+			
 		}
 		div#header_div{
 			width: 240px;
-			margin: 62px auto;
+			margin: 60px auto;
 		}
 		div.div_input{
 			background-color: white;
-			border: 1px solid #badada;
-			width: 408px;
-			height: 46px;
-			margin-bottom: 14px;
-			padding: 10px 35px 10px 15px;
+			border: 1px solid #e7e7e7;
+			width: 350px;
+			height: 50px;
+			margin-bottom: 10px;
+			padding: 13px 35px 10px 15px;
 			position: relative;
 		}
 		span.input_box{
-			display: block;
+			display: inline-block;
 			overflow: hidden; /*사이즈를 정해놓고 그 이상 넘어버리면 숨기는것*/
 		}
 		input.input_login{
+			display: block;
 			border-width: 0px;
-			width: 356px;
-			padding:7px 0px 6px 0px;
+			width: 280px;
+			font-weight: 15px;
+			margin: 0px;
+			padding: 5px;
 		}
-		a#btn_login{
+		button.btn_login{
 			display: block;/*사이즈 줄수있는데 가로 다 내꺼*/
-			background-color: #747474;
+			background-color: black;
 			color: white;
-			font-size: 22px;
-			width: 408px;
-			height: 59px;
+			font-size: 15px;
+			font-weight: 500;
+			width: 100%;
+			height: 50px;
 			text-align: center;/*글자 가운데 정렬*/
-			padding-top: 2px;/*안쪽여백 윗쪽*/
-			line-height: 61px;/*글자가 가운데 정렬된다.//heigt랑 같은값을 주면됨 (패딩 탑2 가 있어서 2를 더해서 준다.)*/
+			padding-top: 0px;/*안쪽여백 윗쪽*/
+			line-height: 50px;/*글자가 가운데 정렬된다.//heigt랑 같은값을 주면됨 (패딩 탑2 가 있어서 2를 더해서 준다.)*/
 			text-decoration: none;
-			margin: 30px 0px 13px 0px;/*시계방향으로 상우하좌*/
+			margin: 15px 0px 15px 0px;/*시계방향으로 상우하좌*/
 		}
 		table{
 			width: 100%;
@@ -234,6 +261,7 @@ div#content_layout{
 		#state{
 			font-size: 13px;
 			position: relative;
+			align-items: left;
 		}
 		td{
 			height: 26px;
@@ -248,11 +276,12 @@ div#content_layout{
 		}
 		#state > input{
 			/*visibility: hidden;*/
+
 			position: absolute;
-			right: 1px;
-			width: 344px;
+			left: -85px;
+			width: 200px;
 			height: 22px;
-			margin-top: 1px;
+			margin-top: 3px;
 		}
 
 		#state > input:checked + label{
@@ -293,8 +322,8 @@ div#content_layout{
 
 		}
 		hr{
-			width: 98%;
-			margin: 20px auto;
+			width: 100%;
+			margin: 10px auto;
 			border: thin solid #eaeaea;
 		}
 		div#member{
@@ -374,29 +403,29 @@ div#content_layout{
 		}
 		a#btnface{
 			display: block;
-			background: #536fac;
+			background: #536FC4;
 			color: white;
 			font-size:15px;
-			width: 388px;
-			height: 52px;
+			width: 100%;
+			height: 50px;
 			text-align: center;
-			padding-top: 1px;
-			line-height: 61px;
+			padding-top: 0px;
+			line-height: 50px;
 			text-decoration: none;
-			margin:30px 0px 13px 13px;
+			margin: 20px 0px 0px 0px;
 		}
 		a#btnkaka{
 			display: block;
 			background: #fae100;
 			color: black;
-			font-size:15px;
-			width: 388px;
-			height: 52px;
+			font-size: 15px;
+			width: 100%;
+			height: 50px;
 			text-align: center;
-			padding-top: 1px;
-			line-height: 61px;
+			padding-top: 0px;
+			line-height: 50px;
 			text-decoration: none;
-			margin:-7px 0px 13px 13px;
+			margin: 10px 0px 5px 0px;
 		}
 		.login_close{
 			position: absolute;
@@ -427,6 +456,7 @@ div#content_layout{
 			text-align: center;
 		}
 		
+		
 	</style>
 		
 </head>
@@ -437,72 +467,74 @@ div#content_layout{
 				<button><i class="fas fa-times"></i></button>
 			</div>
 			<div id="content_layout">
-		<header>
-			<div class="title">
-			 <h1>LOGIN</h1>
-			 <span>WELCOME BACK</span>
-			<div id="header_div">
-				<!-- <a href="httms://www.naver.com">
-					<img alt="네이버 로고" src="../Img/NAVER/naver_logo.png">
-				</a>
-				 -->
-		    </div>
-			</div>
-		</header>
-		<section>
-			<form class=frm_login>
-			<div class="div_input" id="naver_id">
-				<span class="input_box">
-					<input type="text" placeholder="아이디" id="login_id" class="input_login" >
-					
-				</span>
-			</div>
-			<div class="div_input" id="naver_pw">
-				<span class="input_box">
-					<input type="password" placeholder="비밀번호" id="login_pw" class="input_login" >
-					<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
-				</span>
-				
-			</div>
-			</form>
-			<div>
-				<a id="btn_login" href="#">로그인</a>
-			</div>
-			<div>
-				<table>
-					<tr>
-						<td id="state">
-							<input type="checkbox" id="loginck">
-							<label for="loginck" class="label1">
-								&nbsp로그인상태유지
-							</label>
-						</td>
-						<td id="secure">
-							<span id="ip_ud"><a href="#">IP보안</a></span>
-							<span id="off">OFF</span>&nbsp;<!--여백줄때 사용-->
-							<span class="si">|</span>&nbsp;
-							<span id="login_ud"><a href="#">일회용 로그인</a></span>&nbsp;
-							<!-- <img src="../Img/NAVER/help.png"> -->
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div><hr></div>
-			<div id="member">
-				<a href="#">아이디 찾기</a>&nbsp;<span class="si"> | </span>&nbsp;
-				<a href="#">비밀번호 찾기</a>&nbsp;<span class="si"> | </span>&nbsp;
-				<a href="#">회원가입</a>
-				
-			</div>
-		</section>
-		<aside>
-			<div class="snsArea">
-				<a id="btnface" href="#"><i class="fab fa-facebook-square"></i>
-				페이스북 로그인</a>
-				<a id="btnkaka" href="#"><i class="fas fa-comment"></i>
 
-</i>
-				카카오톡 로그인</a>			
+
+			<header>
+				<div class="title">
+				 <h1 class="jogging_logo"><a href="#" class="n_logo"></a></h1>
+				
+				</div>
+			</header>
+				<section>
+
+				<form class=frm_login>
+				<div class="div_input" id="naver_id">
+					<span class="input_box">
+						<input type="email" placeholder="아이디" required id="login_id" class="input_login" >
+					</span>
+
+				</div>
+				<div class="div_input" id="naver_pw">
+					<span class="input_box">
+						<input type="password" placeholder="비밀번호" required minlength="6" maxlength="18" 
+						id="login_pw" class="input_login" >
+						<span class="pw_eye"><i class="fas fa-eye-slash"></i></span>
+					</span>
+					
+				</div>
+				
+
+				<div>
+					<button type="submit" class="btn_login">로그인</button>
+				</div>
+
+				</form>
+
+				<div>
+					<table>
+						<tr>
+							<td id="state">
+								<input type="checkbox" id="loginck">
+								<label for="loginck" class="label1">
+									&nbsp로그인상태유지
+								</label>
+							</td>
+							<td id="secure">
+								<span id="ip_ud"><a href="#">IP보안</a></span>
+								<span id="off">OFF</span>&nbsp;<!--여백줄때 사용-->
+								<span class="si">|</span>&nbsp;
+								<span id="login_ud"><a href="#">일회용 로그인</a></span>&nbsp;
+								<!-- <img src="../Img/NAVER/help.png"> -->
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div><hr></div>
+				<div id="member">
+					<a href="#">아이디 찾기</a>&nbsp;<span class="si"> | </span>&nbsp;
+					<a href="#">비밀번호 찾기</a>&nbsp;<span class="si"> | </span>&nbsp;
+					<a href="#">회원가입</a>
+					
+				</div>
+			</section>
+			<aside>
+				<div class="snsArea">
+					<a id="btnface" href="#"><i class="fab fa-facebook-square"></i>
+					페이스북 로그인</a>
+					<a id="btnkaka" href="#"><i class="fas fa-comment"></i>
+
+	
+					카카오톡 로그인</a>			
 			</div>
 		</aside>
 		<footer>
