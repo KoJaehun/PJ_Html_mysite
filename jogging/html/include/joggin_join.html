@@ -66,6 +66,10 @@
 			background: #fff;
 			vertical-align: top;
 		}
+		.ps_post{
+			display: table-column;
+		
+		}
 		.int_id{
 			padding-right: 110px;
 		}
@@ -247,7 +251,7 @@
 								<label for="pswd1">비밀번호</label>
 							</h3>
 							<span class="ps_box int_pass">
-								<input type="password" id="upw" name="upw" class="int">
+								<input type="text" id="upw" name="upw" class="int">
 								<span class="step_url"><span class="pw_lock"></span></span>
 							</span>
 							<span class="join_err_msg">필수 정보입니다.</span>
@@ -259,7 +263,7 @@
 								<label for="pswd2">비밀번호 재확인</label>
 							</h3>
 							<span class="ps_box int_pass">
-								<input type="password" id="urpw" name="urpw" class="int">
+								<input type="text" id="urpw" name="urpw" class="int">
 								<span class="step_url"><span class="repw_lock"></span></span>
 							</span>
 							<span class="join_err_msg">필수 정보입니다.</span>
@@ -359,6 +363,26 @@
 							</span>
 							<span class="join_err_msg">필수 정보입니다.</span>
 						</div>
+
+						<div class="join_row">
+							<h3 class="join_title">
+								<label for="adress">주소</label>
+							</h3>
+
+							<span class="ps_box">
+								<input class="int addr_only" type="text" id="sample6_postcode" placeholder="우편번호" readonly>
+								<input type="button" id="btn_post" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+							</span>
+							
+							<span class="ps_box">
+								<input class="int addr_only" type="text" id="sample6_address" placeholder="주소" readonly><br>
+							</span>
+							<span class="ps_box">
+								<input class="int" type="text" id="sample6_detailAddress" placeholder="상세주소">
+							</span>
+							
+							<span class="join_err_msg">필수 정보입니다.</span>
+						</div>
 					</div>
 
 					<div class="btn_double_area">
@@ -394,11 +418,14 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../../js/vallydation.js"></script>
+
 <script type="text/javascript">
 	
 	
 	$(function(){
 		
+		// 비밀번호가 유효한 값인지 체크해주는 Flag값
+		var pwFlag = false;
 
 		// id 유효성체크 :
 		// >> #uid인 input태그의 값을 가져와서 체크
@@ -419,28 +446,131 @@
 
 		// 비밀번호 유효성체크
 		$('#upw').keyup(function(){
-			var pw = $.trim($(this).val());
-			var result = joinValidate.checkPw(pw);
 
+			// 1. 사용자가 입력한 값 받기
+			var pw = $.trim($('#upw').val());
+			var rpw = $.trim($('#urpw').val());
+			
+			// 2. 유효성 체크하기
+			var result = joinValidate.checkPw(pw,rpw);
+			if(result.code == 0 || result.code == 10 || result.code == 6) {
+				pwFlag = true;
+			} else {
+				pwFlag = false;
+			}
+
+
+
+
+			if(result.code == 10) {
+				$('.ps_box:eq(2)').css('border', '2px solid #3885CA');
+				
+			}
+			
+
+			// 3. 체크 결과에 따라 디자인하기
 			ckDesign(result.code, result.desc, 1, 1);
+		});
+
+		// 비밀번호 재확인 유효성체크
+		$('#urpw').keyup(function(){
+
+			var pw = $.trim($('#upw').val());
+			var rpw = $.trim($('#urpw').val());
+
+			var result = joinValidate.checkRpw(pw,rpw, pwFlag);
+
+			if(result.code == 10){
+				$('.ps_box:eq(1)').css('border', '2px solid #3885CA');
+				
+			} else if(result.code == 6) {
+				$('.ps_box:eq(1)').css('border', '2px solid #3885CA');
+				
+			}
+
+			ckDesign(result.code, result.desc, 2, 2);
+
+		});
+
+		// 이름 유효성체크
+		$('#uname').keyup(function(){
+			var name = $.trim($(this).val());
+			var result = joinValidate.checkName(name);
+
+			ckDesign(result.code, result.desc, 3, 3);
+		});
+
+
+		$('#uphone').keyup(function(){
+			var phone = $.trim($(this).val());
+
+			var result = joinValidate.checkPhone(phone);
+
+			ckDesign(result.code, result.desc, 9, 7);
+		
+		});
+
+
+		$('#uemail').keyup(function(){
+			var email = $.trim($(this).val());
+			var result = joinValidate.checkEmail(email);
+
+			ckDesign(result.code, result.desc, 8, 6);
+		});
+
+
+		$('.addr_only').click(function(){
+			// 사용자가 우편번호 또는 주소 input을 클릭했을 때 !
+			$('#btn_post').click();
+		});
+
+
+		// 상세주소를 클릭하면
+		$('#sample6_detailAddress').click(function(){
+			var addrPost = $('sample6_postcode').val();
+			if(addrPost == '' || addrPost.length == 0) {
+				$('#btn_post').click();
+			}
+		});
+
+		// 주소 유효성 체크
+		$('#sample6_detailAddress').keyup(function(){
+			var addrDetail = $.trim($(this).val());
+			var addrPost = $('#sample6_postcode').val();
+
+
+			console.log('우편번호: '+addrPost+',상세주소:'+addrDetail);
+
+			var result = joinValidate.checkAddr(addrDetail, addrPost);
+
+			if(result.code == 3) {							// 우편번호 & 주소 X
+				ckDesign(result.code, result.desc, 11, 8);
+				ckDesign(result.code, result.desc, 10, 8);
+			} else if (result.code == 0) {					// 성공
+				ckDesign(result.code, result.desc, 10, 8);
+				ckDesign(result.code, result.desc, 11, 8);
+				ckDesign(result.code, result.desc, 12, 8);
+			} else {										// 상세주소 통과 X한 모든 경우
+				ckDesign(result.code, result.desc, 12, 8);
+			}
 		});
 	});
 
 
 
 		function ckDesign(code, desc, line, msg) {
-			if(code != 0) {						// 통과 X
-				$('.ps_box:eq('+line+')').css('border', '2px solid #d95339');
-				$('.join_err_msg:eq('+msg+')').css('visibility', 'visible')
-									   .text(desc)
-									   .css('color', '#d95339');
-				return false;
-
-			} else {						// 통과 O
+			if(code == 0 || code == 10) {										// 통과 O
 				$('.ps_box:eq('+line+')').css('border', '2px solid #3885CA');
 				$('.join_err_msg:eq('+msg+')').css('visibility', 'visible')
 									   .text(desc)
 									   .css('color', '#3885CA');
+				return false;
+
+			} else {															// 통과 X
+				$('.ps_box:eq('+line+')').css('border', '2px solid #d95339');
+				$('.join_err_msg:eq('+msg+')').css('visibility', 'visible')
+									   .text(desc)
+									   .css('color', '#d95339');
 				return true;
 			}
 		}
@@ -448,5 +578,55 @@
 
 	
 
+</script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
 </script>
 </html>
