@@ -113,7 +113,7 @@ var joinValidate = {
 		},
 
 		// address
-		success_post : {
+		success_addr : {
 			code: 0,
 			desc: '확인되었습니다'
 		},
@@ -260,12 +260,16 @@ var joinValidate = {
 
 		if(email == '' || email.length == 0) {					// 1. 값 유무
 			return this.resultCode.empty_val;
+
 		} else if(email.match(regEmpty)) {						// 2. 공백 체크
 			return this.resultCode.space_length_val;
-		} else if(email.match(regEmail)) {						// 3. 정규식 체크
+
+		} else if(!email.match(regEmail)) {						// 3. 정규식 체크
 			return this.resultCode.invalid_email;
+
 		} else {												// 통과
 			return this.resultCode.success_email;
+
 		}
 	},
 
@@ -275,13 +279,16 @@ var joinValidate = {
 
 		if(addrPost == '' || addrPost.length == 0) {
 			return this.resultCode.empty_post;
+
 		} else if (addrDetail == '' || addrDetail.length == 0) {
 			return this.resultCode.empty_detail;
 
 		} else if (!addrDetail.match(regAddr)) {
 			return this.resultCode.invalid_addr;
+
 		} else {
 			return this.resultCode.success_addr;
+
 		}
 	}
 }
